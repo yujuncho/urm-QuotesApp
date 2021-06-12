@@ -1,24 +1,28 @@
-import { Fragment } from "react";
-import { Route, Redirect } from "react-router";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import MainNavigation from "./components/layout/MainNavigation";
+import Layout from "./components/layout/Layout";
 import AllQuotes from "./pages/AllQuotes";
 import NewQuote from "./pages/NewQuote";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <Fragment>
-      <MainNavigation />
-      <Route path="/" exact>
-        <Redirect to="/quotes" />
-      </Route>
-      <Route path="/quotes">
-        <AllQuotes />
-      </Route>
-      <Route path="/new-quote">
-        <NewQuote />
-      </Route>
-    </Fragment>
+    <Layout>
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/quotes" />
+        </Route>
+        <Route path="/quotes">
+          <AllQuotes />
+        </Route>
+        <Route path="/new-quote">
+          <NewQuote />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
